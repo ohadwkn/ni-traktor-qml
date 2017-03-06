@@ -191,6 +191,11 @@ Item {
   state: deckSize
   states: [
     State {
+      name: "none";
+      PropertyChanges { target: deckHeader; headerState: "none"; }
+      PropertyChanges { target: flipable;    anchors.topMargin: -6; }
+    },
+    State {
       name: "small";
       PropertyChanges { target: deckHeader; headerState: "small"; }
       PropertyChanges { target: flipable;    anchors.topMargin: -3; }

@@ -9,7 +9,7 @@ Rectangle {
   property string  propertiesPath:  ""
   property alias   navMenuValue:    body.navMenuValue
   property alias   navMenuSelected: body.navMenuSelected
-  property variant deckIds:         (isLeftScreen) ? [0, 2] : [1, 3]
+  property variant deckIds:         (isLeftScreen) ? [2, 2] : [1, 3]
   property int     fxUnitId:        deckIds[ ((fxSelectionState.value < FxOverlay.lower_button_1) || (fx4Mode.value == FxMode.TwoFxUnits)) ? 0 : 1 ] // denotes if upper or lower fx unit is seleted
   property int     activeTab:       FxOverlay.upper_button_1
 
