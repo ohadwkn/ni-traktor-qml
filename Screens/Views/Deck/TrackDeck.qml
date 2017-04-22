@@ -131,7 +131,7 @@ Item {
   ColorOverlay {
     id: emptyTrackDeckImageColorOverlay
     anchors.fill: emptyTrackDeckImage
-    color:        deckColor
+    color:        colors.colorGreenGreyMix
     visible:      (!trackIsLoaded && deckSizeState != "small")
     source:       emptyTrackDeckImage
   }
