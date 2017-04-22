@@ -103,6 +103,7 @@ Item {
 		return "N.A.";
 	}
 
+/*
 	// #######################
 	// ### ADD COVER IMAGE ###
 	// #######################
@@ -155,7 +156,7 @@ Item {
  		   }
     	}
   	}
-
+*/
 	// #######################################
 	// ### ADD HORIZONTAL SEPERATION LINES ###
 	// #######################################
@@ -224,6 +225,7 @@ Item {
    		visible:				isLoaded	// MAKE VISIBLE WHEN TRACK/STEM LOADED
   	}
 
+/*
 	// ### ADD VERTICAL SEPERATOR LINE - RIGHT OF COVER
 	Rectangle {
     	id:						vertical_seperator_rightcover
@@ -236,7 +238,7 @@ Item {
     	color:  				headerState == "small" ? colors.rgba (20, 20, 20, 255) : colors.rgba (40, 40, 40, 255)
    		visible:				isLoaded	// MAKE VISIBLE WHEN TRACK/STEM LOADED
   	}
-
+*/
 
 	// ### ADD VERTICAL SEPERATOR LINE - LEFT OF LOOP SYMBOL
 	Rectangle {
@@ -311,8 +313,8 @@ Item {
 	Rectangle {
     	id:						songtitle_backgnd
     	height: 				14
-    	width:					235
-    	anchors.left: 			cover.right
+    	width:					285
+    	anchors.left: 			deck_header.left
     	anchors.leftMargin: 	1
     	anchors.top:       		top_line.bottom
     	anchors.topMargin: 		3
@@ -337,8 +339,8 @@ Item {
 	Rectangle {
     	id:						artist_backgnd
     	height: 				14
-    	width:					235
-    	anchors.left: 			cover.right
+    	width:					285
+    	anchors.left: 			deck_header.left
     	anchors.leftMargin: 	1
     	anchors.top:       		middleUpper_line.bottom
     	anchors.topMargin: 		1
@@ -348,7 +350,7 @@ Item {
 		Text {
 			id: 					artist_text
 			text: 					propArtist.value
-			color:     				headerState == "small" ? colors.rgba (255, 255, 255, 48) : colors.rgba (255, 255, 255, 64)
+			color:     				headerState == "small" ? colors.rgba (220, 220, 220, 190) : colors.rgba (220, 220, 220, 220)
 			font.pixelSize:     	fonts.scale(12)
 			anchors.left: 			parent.left
 			anchors.leftMargin: 	3
@@ -634,7 +636,12 @@ Item {
 		anchors.leftMargin: 	1
 		anchors.bottom:    		middle_line.top
 		anchors.bottomMargin:  	1
-		color: 					colors.rgba (255, 255, 255, 16)
+    function tempoOffsetTextColor() {
+      if ( propTempo.value <= 2 && propTempo.value >= -2 ) { return colors.rgba (124, 252, 0, 100); }
+      if ( propTempo.value <= 5 || propTempo.value >= -5 ) { return colors.rgba (255, 255, 0, 100); }
+      if ( propTempo.value >= 5 || propTempo.value <= -5 ) { return colors.rgba (255, 69, 0, 100); }
+    }
+    color:          tempoOffsetTextColor()
 		visible:				isLoaded
 
 		Text {
@@ -645,7 +652,7 @@ Item {
 			}
 			text: 					textTempoOffset()
 
-			color:     				colors.rgba (255, 255, 255, 48)
+			color:     				colors.rgba (0, 0, 0, 200)
 			font.pixelSize:     	fonts.scale(14)
 			anchors.horizontalCenter: 	parent.horizontalCenter
 			anchors.top:    		parent.top

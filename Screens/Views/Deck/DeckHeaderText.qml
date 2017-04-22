@@ -305,14 +305,21 @@ Text {
   function getSyncStatusString() {
     if ( !isLoaded ) 
       return " ";
-    else if (isMaster)
-      return "MASTER";
-    else if (isInSync)
-      return "SYNC";
+    // else if (isMaster)
+    //  return "MASTER";
+    // else if (isInSync)
+    //   return "SYNC";
 
-    // Show the decks current pitch value in the area of the Master/Sync indicator 
-    // if a deck is neither synced nor set to maste (TP-8070)
-    return getStableTempoString();
+    var prefix = "";
+
+    if (isMaster)
+      prefix = "M ";
+     else if (isInSync)
+      prefix = "S ";
+ 
+     // Show the decks current pitch value in the area of the Master/Sync indicator
+     // if a deck is neither synced nor set to maste (TP-8070)
+    return prefix + getStableTempoString();
   }
 
 }

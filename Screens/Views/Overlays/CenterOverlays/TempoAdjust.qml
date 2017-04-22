@@ -52,11 +52,25 @@ CenterOverlay {
   // headline
   Text {
     anchors.top:              parent.top
-    anchors.horizontalCenter: parent.horizontalCenter
+//    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.left:             parent.left
     anchors.topMargin:        customMargins.topMarginCenterOverlayHeadline
+    anchors.leftMargin:       20
     font.pixelSize:           fonts.largeFontSize
     color:                    colors.colorCenterOverlayHeadline
     text: titleForBPMOverlay(masterDeckId.value, isSynced.value)
+  }
+
+  // key
+  Text {
+    anchors.top:              parent.top
+    anchors.right:            parent.right
+    anchors.topMargin:        customMargins.topMarginCenterOverlayHeadline
+    anchors.rightMargin:      20
+    font.pixelSize:           fonts.largeFontSize
+    font.family   :           "Pragmatica"
+    color:                    colors.colorWhite
+    text:                     baseBpm.value.toFixed(2).toString()
   }
 
   // value
