@@ -350,7 +350,7 @@ Item {
 		Text {
 			id: 					artist_text
 			text: 					propArtist.value
-			color:     				headerState == "small" ? colors.rgba (220, 220, 220, 190) : colors.rgba (220, 220, 220, 220)
+			color:     				headerState == "small" ? colors.rgba (220, 220, 220, 150) : colors.rgba (220, 220, 220, 190)
 			font.pixelSize:     	fonts.scale(12)
 			anchors.left: 			parent.left
 			anchors.leftMargin: 	3
@@ -636,12 +636,12 @@ Item {
 		anchors.leftMargin: 	1
 		anchors.bottom:    		middle_line.top
 		anchors.bottomMargin:  	1
-    function tempoOffsetTextColor() {
-      if ( propTempo.value <= 2 && propTempo.value >= -2 ) { return colors.rgba (124, 252, 0, 100); }
-      if ( propTempo.value <= 5 || propTempo.value >= -5 ) { return colors.rgba (255, 255, 0, 100); }
-      if ( propTempo.value >= 5 || propTempo.value <= -5 ) { return colors.rgba (255, 69, 0, 100); }
+    function tempoOffsetTextColor(propTempoFunc) {
+      if ( propTempoFunc.value <= 2 && propTempoFunc.value >= -2 ) { return colors.rgba (124, 252, 0, 100); }
+      if ( propTempoFunc.value <= 5 || propTempoFunc.value >= -5 ) { return colors.rgba (255, 255, 0, 100); }
+      if ( propTempoFunc.value >= 5 || propTempoFunc.value <= -5 ) { return colors.rgba (255, 69, 0, 100); }
     }
-    color:          tempoOffsetTextColor()
+    color:          tempoOffsetTextColor(propTempoFunc.toFixed(0))
 		visible:				isLoaded
 
 		Text {
@@ -928,25 +928,39 @@ Item {
 	// Use Original Track BPM for calculations (propTrackBpm).
 
 	Rectangle {
-		id: 					nextCueBeat_backgnd
+		id: 					keyAdjustChange_backgnd
 		height: 				14
 		width: 					55
 		anchors.left: 			vertical_seperator_middle.right
 		anchors.leftMargin: 	1
 		anchors.top:       		middle_line.bottom
 		anchors.topMargin:  	1
-		color: 					colors.rgba (255, 255, 255, 16)
+    function keyBgColorIfAdjusted() {
+      if (key.toFixed(0)!=0) {
+        return colors.rgba (255, 255, 0, 150)
+      } else {
+        return colors.rgba (255, 255, 255, 16)
+      } 
+    }
+		color: 					keyBgColorIfAdjusted()
 		visible:				isLoaded
 
 
     Text {
-      id:           nextCueBeat_string
+      id:           keyAdjustChange_string
       text:           ((key<0)?"":"+") + key.toFixed(2).toString()
-      color:            headerState == "small" ? colors.rgba (255, 255, 255, 48) : colors.rgba (255, 255, 255, 232)
+      function keyTextColorIfAdjusted() {
+        if (key.toFixed(0)!=0) {
+          return headerState == "small" ? colors.rgba (0, 0, 0, 48) : colors.rgba (0, 0, 0, 232)
+        } else {
+          return headerState == "small" ? colors.rgba (255, 255, 255, 48) : colors.rgba (255, 255, 255, 232)
+        } 
+      }
+      color:            keyTextColorIfAdjusted()
       font.pixelSize:       fonts.scale(14)
       anchors.top:          parent.top
       anchors.topMargin:    -2
-      anchors.horizontalCenter: nextCueBeat_backgnd.horizontalCenter
+      anchors.horizontalCenter: parent.horizontalCenter
       visible:        isLoaded
     }
 
