@@ -637,11 +637,11 @@ Item {
 		anchors.bottom:    		middle_line.top
 		anchors.bottomMargin:  	1
     function tempoOffsetTextColor(propTempoFunc) {
-      if ( propTempoFunc.value <= 2 && propTempoFunc.value >= -2 ) { return colors.rgba (124, 252, 0, 100); }
-      if ( propTempoFunc.value <= 5 || propTempoFunc.value >= -5 ) { return colors.rgba (255, 255, 0, 100); }
-      if ( propTempoFunc.value >= 5 || propTempoFunc.value <= -5 ) { return colors.rgba (255, 69, 0, 100); }
+      if ( propTempoFunc <= 2 && propTempoFunc >= -2 ) { return colors.rgba (124, 252, 0, 70); }
+      if ( propTempoFunc <= 5 && propTempoFunc >= -5 ) { return colors.rgba (255, 255, 0, 70); }
+      if ( propTempoFunc >= 5 || propTempoFunc <= -5 ) { return colors.rgba (255, 69, 0, 100); }
     }
-    color:          tempoOffsetTextColor(propTempoFunc.toFixed(0))
+    color:          tempoOffsetTextColor(((propTempo.value-1)*100).toFixed(0))
 		visible:				isLoaded
 
 		Text {
@@ -652,7 +652,7 @@ Item {
 			}
 			text: 					textTempoOffset()
 
-			color:     				colors.rgba (0, 0, 0, 200)
+			color:     				colors.rgba (119,136,153, 200)
 			font.pixelSize:     	fonts.scale(14)
 			anchors.horizontalCenter: 	parent.horizontalCenter
 			anchors.top:    		parent.top
