@@ -32,6 +32,7 @@ Item {
 	AppProperty { id: propLegacyKey;       		path: "app.traktor.decks." + (deck_Id+1) + ".content.legacy_key" }
   AppProperty { id: keyValue;               path: "app.traktor.decks." + (deckId+1) + ".track.key.adjust" }
   property real key:    keyValue.value * 12
+  AppProperty { id: keyAdjustedDisplay;     path: "app.traktor.decks." + (deckId+1) + ".track.key.key_for_display" }
 
 	AppProperty { id: deckType;           		path: "app.traktor.decks." + (deck_Id+1) + ".type" }
 
@@ -991,7 +992,7 @@ Item {
 
 		Text {
 			id: 					musickey_text
-			text: 					propMusicalKey.value
+			text: 					keyAdjustedDisplay.value
 			color:     				headerState == "small" ? colors.rgba (255, 255, 255, 48) : colors.rgba (255, 255, 255, 232)
 			font.pixelSize:     	fonts.scale(14)
 			anchors.top:       		parent.top
