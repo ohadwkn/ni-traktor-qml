@@ -116,13 +116,63 @@ Item {
 
   // Image (Logo) for empty Track Deck  --------------------------------------------------------------------------------
 
+/*  Rectangle {
+      id:           artist_backgnd
+      height:         14
+      width:          285
+      anchors.left:       deck_header.left
+      anchors.leftMargin:   1
+      anchors.top:          middleUpper_line.bottom
+      anchors.topMargin:    1
+      color:          colors.rgba (255, 255, 255, 0)
+    visible:        isLoaded
+
+    Text {
+      id:           artist_text
+      text:           propArtist.value
+      color:            headerState == "small" ? colors.rgba (220, 220, 220, 150) : colors.rgba (220, 220, 220, 190)
+      font.pixelSize:       fonts.scale(12)
+      anchors.left:       parent.left
+      anchors.leftMargin:   3
+      anchors.top:        parent.top
+      anchors.topMargin:    -2
+      elide:            Text.ElideRight
+      width:          parent.width - 6
+    }
+
+*/
+  Rectangle {
+    id: soularGapFillerLeft
+    anchors.left:   deck_header.left
+    anchors.right:  deck_header.right
+    anchors.bottom: emptyTrackDeckImageColorOverlay.top
+    height:         50
+    width: parent.width
+    color:          colors.colorBlack
+    visible:        (!trackIsLoaded && deckSizeState != "small")
+
+    Text {
+      id:           soular_text
+      text:           "soular"
+      color:            colors.rgba (255,140,0,255)
+      font.pixelSize:       fonts.scale(35)
+      anchors.left:       parent.left
+      anchors.leftMargin:   3
+      anchors.top:        parent.top
+      anchors.topMargin:    -2
+      horizontalAlignment:  Text.AlignHCenter
+      verticalAlignment:    Text.AlignVCenter
+      // elide:            Text.ElideRight
+      width:          parent.width - 6
+    }
+
+  }
+
   Image {
     id: emptyTrackDeckImage
     anchors.fill:         parent
-    anchors.bottomMargin: 18
-    anchors.topMargin:    5
     visible:              false // visibility is handled through the emptyTrackDeckImageColorOverlay
-    source:               "./../images/EmptyDeck.png"
+    source:               "./../images/eclipse-solar-resize.png"
     fillMode:             Image.PreserveAspectFit
   }
 
@@ -131,7 +181,6 @@ Item {
   ColorOverlay {
     id: emptyTrackDeckImageColorOverlay
     anchors.fill: emptyTrackDeckImage
-    color:        colors.colorGreenGreyMix
     visible:      (!trackIsLoaded && deckSizeState != "small")
     source:       emptyTrackDeckImage
   }
