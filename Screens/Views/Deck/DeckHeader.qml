@@ -10,7 +10,7 @@ import './../Widgets' as Widgets
 
 Item {
   	id: 		deck_header
-  
+
   	readonly property int thruDeckType:  4	// QML-only deck types
   	property int    deck_Id:           0
 
@@ -21,26 +21,27 @@ Item {
 	AppProperty { id: propArtist;         		path: "app.traktor.decks." + (deck_Id+1) + ".content.artist" }
 	AppProperty { id: propTitle;          		path: "app.traktor.decks." + (deck_Id+1) + ".content.title" }
 	AppProperty { id: propMixerStableBpm; 		path: "app.traktor.decks." + (deck_Id+1) + ".tempo.true_bpm" }
-	AppProperty { id: propTrackBpm;        		path: "app.traktor.decks." + (deck_Id+1) + ".content.bpm"; } 
-	AppProperty { id: propTempo;            	path: "app.traktor.decks." + (deck_Id+1) + ".tempo.tempo_for_display" } 
+	AppProperty { id: propTrackBpm;        		path: "app.traktor.decks." + (deck_Id+1) + ".content.bpm"; }
+	AppProperty { id: propTempo;            	path: "app.traktor.decks." + (deck_Id+1) + ".tempo.tempo_for_display" }
 	AppProperty { id: propRemixBeatPos;     	path: "app.traktor.decks." + (deck_Id+1) + ".remix.current_beat_pos"; }
-	AppProperty { id: propElapsedTime;    		path: "app.traktor.decks." + (deck_Id+1) + ".track.player.elapsed_time"; } 
+	AppProperty { id: propElapsedTime;    		path: "app.traktor.decks." + (deck_Id+1) + ".track.player.elapsed_time"; }
 	AppProperty { id: propGridOffset;     		path: "app.traktor.decks." + (deck_Id+1) + ".content.grid_offset" }
 	AppProperty { id: propNextCuePoint;   		path: "app.traktor.decks." + (deck_Id+1) + ".track.player.next_cue_point"; }
 	AppProperty { id: propTrackLength;    		path: "app.traktor.decks." + (deck_Id+1) + ".track.content.track_length"; }
 	AppProperty { id: propMusicalKey;       	path: "app.traktor.decks." + (deck_Id+1) + ".content.musical_key" }
 	AppProperty { id: propLegacyKey;       		path: "app.traktor.decks." + (deck_Id+1) + ".content.legacy_key" }
-  AppProperty { id: keyValue;               path: "app.traktor.decks." + (deckId+1) + ".track.key.adjust" }
-  property real key:    keyValue.value * 12
-  AppProperty { id: keyAdjustedDisplay;     path: "app.traktor.decks." + (deckId+1) + ".track.key.key_for_display" }
-
+	// -----TenSuns Properties Start----//
+	AppProperty { id: keyValue;               path: "app.traktor.decks." + (deckId+1) + ".track.key.adjust" }
+	property real key:    keyValue.value * 12
+	AppProperty { id: keyAdjustedDisplay;     path: "app.traktor.decks." + (deckId+1) + ".track.key.key_for_display" }
+	//------TenSuns Properties End----//
 	AppProperty { id: deckType;           		path: "app.traktor.decks." + (deck_Id+1) + ".type" }
 
 	AppProperty { id: directThru;                 path: "app.traktor.decks." + (deck_Id+1) + ".direct_thru"; onValueChanged: { updateHeader() } }
 	AppProperty { id: headerPropertyCover;        path: "app.traktor.decks." + (deck_Id+1) + ".content.cover_md5" }
 	AppProperty { id: primaryKey;         		path: "app.traktor.decks." + (deck_Id+1) + ".track.content.primary_key" }
 
-	AppProperty { id: propIsInSync;       		path: "app.traktor.decks." + (deck_Id+1) + ".sync.enabled"; }  
+	AppProperty { id: propIsInSync;       		path: "app.traktor.decks." + (deck_Id+1) + ".sync.enabled"; }
 	AppProperty { id: propSyncMasterDeck; 		path: "app.traktor.masterclock.source_id" }
 
 	AppProperty { id: headerPropertyLoopActive;   path: "app.traktor.decks." + (deck_Id+1) + ".loop.active"; }
@@ -68,7 +69,7 @@ Item {
 	// ### Convert NI & camelot Keys to CAMELOT key format
 	function convertToCamelot(inputKey) {
 		// Minor Keys
-		
+
 		//  CAMELOT WITH 0			CAMELOT					OPEN KEY	 			MUSICAL KEY				MUSICAL KEY SHARP			DISPLAY VALUE
 		if (inputKey == "01A" || 	inputKey ==  "1A" || 	inputKey ==  "6m" || 	inputKey ==  "Abm" || 	inputKey ==  "G#m") 	{	return "01A"; }
 		if (inputKey == "02A" || 	inputKey ==  "2A" || 	inputKey ==  "7m" || 	inputKey ==  "Ebm" || 	inputKey ==  "D#m") 	{	return "02A"; }
@@ -84,7 +85,7 @@ Item {
 		if (inputKey == "12A" || 	inputKey == "12A" || 	inputKey ==  "5m" || 	inputKey ==  "Dbm" || 	inputKey ==  "C#m")		{	return "12A"; }
 
 		// Mayor Keys
-		
+
 		//  CAMELOT WITH 0			CAMELOT					OPEN KEY	 			MUSICAL KEY				MUSICAL KEY SHARP			DISPLAY VALUE
 		if (inputKey == "01B" || 	inputKey ==  "1B" || 	inputKey ==  "6d" || 	inputKey ==  "B"   || 	inputKey ==  "B"  ) 	{	return "01B"; }
 		if (inputKey == "02B" || 	inputKey ==  "2B" || 	inputKey ==  "7d" || 	inputKey ==  "Gb"  || 	inputKey ==  "F#" ) 	{	return "02B"; }
@@ -117,7 +118,7 @@ Item {
     	width:  					(isLoaded) ? 48:32
     	height: 					(isLoaded) ? 48:32
     	color:  					colors.rgba (255, 255, 255, 32)
-    	
+
     	// ### DRAW SYMBOL WHEN NO TRACK IS LOADED OR COVER IMAGE IS EMPTY
     	Rectangle {
       		id: 						coverEmptyCircle
@@ -138,7 +139,7 @@ Item {
       		visible: 					(!isLoaded || (headerPropertyCover.value == ""))
       		color:   					colors.rgba (255, 255, 255, 32)
     	}
-		
+
 		// ### LOAD COVER IMAGE WHEN TRACK/STEM AND COVER IMAGE IS NOT EMPTY
     	Image {
       		id: 						coverImage
@@ -148,7 +149,7 @@ Item {
       		sourceSize.width: 			parent.width
       		visible: 					isLoaded && (headerPropertyCover.value != "")
       		fillMode: 					Image.PreserveAspectCrop
- 
+
  			ColorOverlay {
  		        anchors.fill: coverImage
  		        source: coverImage
@@ -334,7 +335,7 @@ Item {
 			width: 					parent.width - 6
 		}
 	}
-	
+
 	// Artist_text: ARTIST
 	Rectangle {
     	id:						artist_backgnd
@@ -514,7 +515,7 @@ Item {
 
 			visible:					isLoaded
 		}
-		
+
 		// ### ADD DIVIDER LINE
 		Rectangle {
 			id:							loopindicator_dividerLine
@@ -539,7 +540,7 @@ Item {
 
 			anchors.verticalCenter: 	parent.verticalCenter
 			color: 						headerPropertyLoopActive.value ? ( headerState == "small" ? colors.rgba (0, 0, 0, 232) : colors.rgba (0, 0, 0, 232) ) : ( headerState == "small" ? colors.rgba (255, 255, 255, 48) : colors.rgba (255, 255, 255, 232) )
-			visible:					(isLoaded && (headerPropertyLoopSize.value < 5))	
+			visible:					(isLoaded && (headerPropertyLoopSize.value < 5))
 			transform: 					Rotation { origin.x: 7; origin.y: 0; angle: 300}
 		}
 	}
@@ -556,7 +557,7 @@ Item {
     	anchors.leftMargin: 	1
     	anchors.top:       		top_line.bottom
     	anchors.topMargin: 		1
-		
+
 		function mstrSyncRectColor() {
 			if ( isInSync ) { return colors.rgba (0, 220, 0, 128); }
 			if ( isMaster ) { return colors.rgba (255, 128, 0, 120); }
@@ -595,7 +596,7 @@ Item {
 	// ####################################################
 	// ### SYNCED BEATS PER MINUTE (TOP - MIDDLE/RIGHT) ### - OK
 	// ####################################################
-		
+
 	// Displays tracks's current BPM.
 
 	Rectangle {
@@ -624,10 +625,10 @@ Item {
 	// ###########################################
 	// ### TEMPO OFFSET (MIDDLE - MIDDLE/LEFT) ### - OK
 	// ###########################################
-	
+
 	// Displays the track offset in percentages.
 	// Offset is determined either by manual or sync offset compared to original tracks BPM.
-	
+
 	Rectangle {
 		id: 					tempoOffset_backgnd
 		height: 				14
@@ -690,20 +691,20 @@ Item {
 			visible:				isLoaded
 		}
 	}
-	
+
 	// #######################
 	// ### ADD DECK LETTER ### - OK
 	// #######################
 
 	// Displays the current deck letter.
 	// Background color changes so it matches the DECK button in the S8
-	
+
 	Rectangle {
 		id: 					deckletter_backgnd
 		height: 				31
 		width: 					30
 		anchors.left: 			vertical_seperator_rightmiddle.right
-		anchors.leftMargin: 	1	
+		anchors.leftMargin: 	1
 		anchors.top:       		top_line.bottom
 		anchors.topMargin:  	1
 		function colorDeckLetterBackgnd() {
@@ -745,7 +746,7 @@ Item {
 	// ###################################################
 	// ### ADD TIME BAR & DOWN COUNTER (BOTTOM - LEFT) ### - OK
 	// ###################################################
-	
+
 	// Displays progress bar and remaining time (mm:ss:hh)
 	// Fade/Blink Orange/Red when track-end threshold is passed.
 	// Set the track-end warning threshold in seconds (warningtime : 0..59 seconds)
@@ -782,12 +783,12 @@ Item {
 				var sec = Math.floor(seconds % 60);
 				var min = (Math.floor(seconds) - sec) / 60;
 
-				if ((sec < warningtime) && (min == 0)) { 
+				if ((sec < warningtime) && (min == 0)) {
 					if (hun < 50) {
 						return colors.rgba (255, (128-(hun*128/50)), 0, 120); }
 					else { return colors.rgba (255, ((hun-50)*128/50), 0, 120); }
 					}
-				else { return colors.rgba (255, 128, 0, 120); }	
+				else { return colors.rgba (255, 128, 0, 120); }
 			}
 			color:     				headerState == "small" ? colors.rgba (240, 240, 240, 16) : timeRemainingColor()
 
@@ -867,8 +868,8 @@ Item {
 			if ( (value2 == phraseLength) && (value3 == beatLength) && (beat > 0.0) ) { return colors.rgba (0, 220, 0, 128); }
 			if ( (value2 == 1) && (value3 == 1) && (beat < 0.0) ) { return colors.rgba (0, 220, 0, 128); }
 
-			return colors.rgba (255, 255, 255, 16); 
-		}	
+			return colors.rgba (255, 255, 255, 16);
+		}
 
 		color: 					currentBeat_colorCalc() //colors.rgba (255, 255, 255, 16)
 		visible:				isLoaded
@@ -889,7 +890,7 @@ Item {
 				if (beat < 0.0) { return "-" + value1.toString() + ":" + value2.toString() + "." + value3.toString(); }
 
 				return value1.toString() + ":" + value2.toString() + "." + value3.toString();
-			}	
+			}
 			text:   				currentBeat_stringCalc()
 
 			function currentBeat_colortextCalc() {
@@ -904,9 +905,9 @@ Item {
 
 				if ( (value2 == phraseLength) && (value3 == beatLength) && (beat > 0.0) ) { return colors.rgba (0, 0, 0, 232); }
 				if ( (value2 == 1) && (value3 == 1) && (beat < 0.0) ) { return colors.rgba (0, 0, 0, 232); }
-				
-				return colors.rgba (255, 255, 255, 232); 
-			}	
+
+				return colors.rgba (255, 255, 255, 232);
+			}
 
 			color:     				headerState == "small" ? colors.rgba (255, 255, 255, 48) : currentBeat_colortextCalc()
 
@@ -917,7 +918,7 @@ Item {
 			visible:				isLoaded
 		}
 	}
-	
+
 	// #########################################################
 	// ### BEATS TILL NEXT CUE POINT (BOTTOM - MIDDLE/RIGHT) ### - OK
 	// #########################################################
@@ -940,7 +941,7 @@ Item {
         return colors.rgba (255, 255, 0, 150)
       } else {
         return colors.rgba (255, 255, 255, 16)
-      } 
+      }
     }
 		color: 					keyBgColorIfAdjusted()
 		visible:				isLoaded
@@ -954,7 +955,7 @@ Item {
           return headerState == "small" ? colors.rgba (0, 0, 0, 48) : colors.rgba (0, 0, 0, 232)
         } else {
           return headerState == "small" ? colors.rgba (255, 255, 255, 48) : colors.rgba (255, 255, 255, 232)
-        } 
+        }
       }
       color:            keyTextColorIfAdjusted()
       font.pixelSize:       fonts.scale(14)
@@ -979,7 +980,7 @@ Item {
 
 				if (beat < 0.0) { return "-" + value1.toString() + ":" + value2.toString() + "." + value3.toString(); }
 
-				return value1.toString() + "." + value2.toString() + "." + value3.toString();	
+				return value1.toString() + "." + value2.toString() + "." + value3.toString();
 			}
 			text:   				nextCueBeat_stringCalc()
 
@@ -998,13 +999,13 @@ Item {
 	// ###################################################
 
 	// Displays the Musical Key for the current track. (CAMELOT FORMAT)
-	
+
 	Rectangle {
     	id:						musickey_backgnd
     	width:  				30
     	height: 				14
     	anchors.left: 			vertical_seperator_rightmiddle.right
-    	anchors.leftMargin: 	1	
+    	anchors.leftMargin: 	1
 		anchors.top:       		middle_line.bottom
 		anchors.topMargin:  	1
 		color:     				headerState == "small" ? colors.rgba (255, 255, 255, 16) : colors.rgba (255, 255, 255, 48)

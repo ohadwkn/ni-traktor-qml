@@ -8,4 +8,3 @@ QtObject {
     readonly property int settings:       2
 }
 
-  

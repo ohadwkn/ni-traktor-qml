@@ -9,15 +9,15 @@ import './../Definitions' as Definitions
 
 Item {
   id: view
-  
+
   property int    deckId:         0
   property int    sampleWidth:    0
-  property var    waveformPosition 
-  
+  property var    waveformPosition
+
   readonly property var colorIds: [stemColorId_1.value, stemColorId_2.value, stemColorId_3.value, stemColorId_4.value]
 
   //--------------------------------------------------------------------------------------------------------------------
- 
+
   AppProperty { id: stemColorId_1; path: "app.traktor.decks." + (deckId + 1) + ".stems.1.color_id" }
   AppProperty { id: stemColorId_2; path: "app.traktor.decks." + (deckId + 1) + ".stems.2.color_id" }
   AppProperty { id: stemColorId_3; path: "app.traktor.decks." + (deckId + 1) + ".stems.3.color_id" }
@@ -28,10 +28,10 @@ Item {
   Repeater {
     model: 4
 
-    SingleWaveform { 
+    SingleWaveform {
       y:      index * view.height/4 + (index > 1 ? 2 : 1)
       width:  view.width
-      height: 34
+      height: view.height / 4
       clip:   true
 
       deckId:           view.deckId

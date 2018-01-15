@@ -23,6 +23,8 @@ Item {
   readonly property int  textTopMargin:         7 // centers text vertically
   readonly property bool isLoaded:              (model.dataType == BrowserDataType.Track) ? model.loadedInDeck.length > 0 : false
   // visible: !ListView.isCurrentItem
+  readonly property variant keyText:            ["8B", "3B", "10B", "5B", "12B", "7B", "2B", "9B", "4B", "11B", "6B", "1B",
+                                                 "5A", "12A", "7A", "2A", "9A", "4A", "11A", "6A", "1A", "8A", "3A", "10A"]
 
   height: 33
   anchors.left: parent.left
@@ -30,13 +32,13 @@ Item {
 
   // container for zebra & track infos
   Rectangle {
-    // when changing colors here please remember to change it in the GridView in Templates/Browser.qml 
-    color:  (index%2 == 0) ? colors.colorGrey08 : "transparent" 
+    // when changing colors here please remember to change it in the GridView in Templates/Browser.qml
+    color:  (index%2 == 0) ? colors.colorGrey08 : "transparent"
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.leftMargin: 3
     anchors.rightMargin: 3
-    height: parent.height  
+    height: parent.height
 
     // track name, toggles with folder name
     Rectangle {
@@ -72,12 +74,12 @@ Item {
         source: "./../Images/PrepListIcon" + prepIconColorPostfix + ".png"
         width: sourceSize.width
         height: sourceSize.height
-        anchors.left: firstFieldText.right 
+        anchors.left: firstFieldText.right
         anchors.top: parent.top
         anchors.topMargin: 4
         anchors.leftMargin: 5
       }
-    }   
+    }
 
     // folder name
     Text {
@@ -94,7 +96,7 @@ Item {
       visible: (model.dataType != BrowserDataType.Track)
       width: 190
     }
-    
+
 
     // artist name
     Text {
@@ -109,12 +111,12 @@ Item {
       text: (model.dataType == BrowserDataType.Track) ? model.artistName: ""
       font.pixelSize: fonts.middleFontSize
       elide: Text.ElideRight
-    }  
+    }
 
     // bpm
     Text {
       id: bpmField
-      anchors.left: trackTitleField.right    
+      anchors.left: trackTitleField.right
       anchors.top: parent.top
       anchors.topMargin: contactDelegate.textTopMargin
       horizontalAlignment: Text.AlignRight
@@ -123,7 +125,7 @@ Item {
       clip: true
       text: (model.dataType == BrowserDataType.Track) ? model.bpm.toFixed(0) : ""
       font.pixelSize: fonts.middleFontSize
-    }  
+    }
 
     function colorForKey(keyIndex) {
       return colors.musicalKeyColors[keyIndex]
@@ -155,24 +157,25 @@ Item {
       anchors.verticalCenter: parent.verticalCenter
       height: 13
       width: 20
-      bigLineColor:   contactDelegate.isCurrentItem ? ((contactDelegate.screenFocus < 2) ? colors.colorDeckBlueBright       : colors.colorWhite )    : colors.colorGrey64
-      smallLineColor: contactDelegate.isCurrentItem ? ((contactDelegate.screenFocus < 2) ? colors.colorDeckBlueBright50Full : colors.colorGrey32 )   : colors.colorGrey32
+      /* TenSuns Coloring of Rating */
+      bigLineColor:   (contactDelegate.isCurrentItem && contactDelegate.screenFocus >= 2) ? colors.colorWhite   : (model.rating == 255 ? colors.colorIndicatorLevelOrange : (model.rating == 204 ? colors.colorOrange : colors.colorOrangeDimmed))
+      smallLineColor: colors.colorGrey32
     }
 
-    
+
     ListHighlight {
       anchors.fill: parent
       visible: contactDelegate.isCurrentItem
       anchors.leftMargin: (model.dataType == BrowserDataType.Track) ? 34 : 0
-      anchors.rightMargin: 0 
+      anchors.rightMargin: 0
     }
   }
 
   Rectangle {
-    id: trackImage 
+    id: trackImage
     anchors.top: parent.top
     anchors.left: parent.left
-    anchors.leftMargin: 3              
+    anchors.leftMargin: 3
     width: 33
     height: 33
     color: (model.coverUrl != "") ? "transparent" : ((contactDelegate.screenFocus < 2) ? colors.colorDeckBlueBright50Full : colors.colorGrey128 )
@@ -208,7 +211,7 @@ Item {
             }
             else if (!isCurrentItem)
             {
-              return colors.colorBlack81;
+              return colors.colorBlack60;
             }
             else if (isCurrentItem)
             {
@@ -256,7 +259,7 @@ Item {
       sourceSize.height: height
       visible: (model.dataType == BrowserDataType.Track) ? (model.prevPlayed && !model.prelisten) : false
     }
-    
+
     Image {
       id: loadedDeckA
       source: "./../images/LoadedDeckA.png"
@@ -324,7 +327,7 @@ Item {
     anchors.fill: folderIcon
     source: folderIcon
   }
-  
+
   function hideCoverBorder() {
     if (model.dataType == BrowserDataType.Folder) {
       return false
@@ -339,7 +342,7 @@ Item {
     //   border.width: 1
     //   border.color: "#26FFFFFF"
     //   height: listImage.height
-    //   width: height 
+    //   width: height
     //   visible: hideCoverBorder()
     //   anchors.top: listImage.top
     //   anchors.left: listImage.left

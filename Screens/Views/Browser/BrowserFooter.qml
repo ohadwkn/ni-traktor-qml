@@ -2,7 +2,7 @@ import QtQuick 2.0
 import CSI 1.0
 import Traktor.Gui 1.0 as Traktor
 import './../Definitions' as Definitions
-import './../Widgets' as Widgets 
+import './../Widgets' as Widgets
 import '../../../Defines'
 
 
@@ -15,15 +15,15 @@ Rectangle {
   property string propertiesPath: ""
   property real  sortingKnobValue: 0.0
   property bool  isContentList:    qmlBrowser.isContentList
-  
+
   // the given numbers are determined by the EContentListColumns in Traktor
   readonly property variant sortIds:          [0 ,  2     ,   3     ,  5   ,  28  ,  22     ,  27          ]
   readonly property variant sortNames:        ["Sort By #", "Title", "Artist", "BPM", "Key", "Rating", "Import Date"]
   readonly property int     selectedFooterId: (selectedFooterItem.value === undefined) ? 0 : ( ( selectedFooterItem.value % 2 === 1 ) ? 1 : 4 ) // selectedFooterItem.value takes values from 1 to 4.
-  
+
   property          real    preSortingKnobValue: 0.0
 
-  //--------------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------------
 
   AppProperty { id: previewIsLoaded;     path : "app.traktor.browser.preview_player.is_loaded" }
   AppProperty { id: previewTrackLenght;  path : "app.traktor.browser.preview_content.track_length" }
@@ -33,16 +33,16 @@ Rectangle {
   MappingProperty { id: isContentListProp; path: propertiesPath + ".browser.is_content_list" }
   MappingProperty { id: selectedFooterItem;      path: propertiesPath + ".selected_footer_item" }
 
-  //--------------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------------
   // Behavior on Sorting Chnages (show/hide sorting widget, select next allowed sorting)
-  //--------------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------------
 
-  onIsContentListChanged: { 
-    // We need this to be able do disable mappings (e.g. sorting ascend/descend) 
-    isContentListProp.value = isContentList; 
+  onIsContentListChanged: {
+    // We need this to be able do disable mappings (e.g. sorting ascend/descend)
+    isContentListProp.value = isContentList;
   }
 
-  onSortingKnobValueChanged: { 
+  onSortingKnobValueChanged: {
     if (!footer.isContentList)
     return;
 
@@ -53,7 +53,7 @@ Rectangle {
     val     = parseInt(val);
     if (val != 0) {
       qmlBrowser.sortingId   = getSortingIdWithDelta( val );
-      footer.preSortingKnobValue = footer.sortingKnobValue;   
+      footer.preSortingKnobValue = footer.sortingKnobValue;
     }
   }
 
@@ -67,9 +67,9 @@ Rectangle {
   }
 
 
-  //--------------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------------
   // View
-  //--------------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------------
 
   clip: true
   anchors.left:   parent.left
@@ -99,7 +99,7 @@ Rectangle {
       height: 15
 
       Text {
-        font.pixelSize: fonts.scale(12) 
+        font.pixelSize: fonts.scale(12)
         anchors.left: parent.left
         anchors.leftMargin:     3
         font.capitalization: Font.AllUppercase
@@ -108,7 +108,7 @@ Rectangle {
         visible: qmlBrowser.isContentList
       }
       // Arrow (Sorting Direction Indicator)
-      Widgets.Triangle { 
+      Widgets.Triangle {
         id : sortDirArrow
         width:  8
         height: 4
@@ -119,7 +119,7 @@ Rectangle {
         antialiasing: false
         visible: (qmlBrowser.isContentList && qmlBrowser.sortingId > 0)
         color: colors.colorGrey80
-        rotation: ((qmlBrowser.sortingDirection == 1) ? 0 : 180) 
+        rotation: ((qmlBrowser.sortingDirection == 1) ? 0 : 180)
       }
       Rectangle {
         id: divider
@@ -137,7 +137,7 @@ Rectangle {
         width:  120
         height: 15
         Text {
-          font.pixelSize: fonts.scale(12) 
+          font.pixelSize: fonts.scale(12)
           anchors.left:   parent.left
           anchors.leftMargin: 3
           font.capitalization: Font.AllUppercase
@@ -161,7 +161,7 @@ Rectangle {
       height: 15
 
       Text {
-        font.pixelSize: fonts.scale(12) 
+        font.pixelSize: fonts.scale(12)
         anchors.left: parent.left
         anchors.leftMargin: 5
         font.capitalization: Font.AllUppercase
@@ -201,11 +201,11 @@ Rectangle {
     }
   }
 
-  //--------------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------------
   // black border & shadow
-  //--------------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------------
 
-  Rectangle {    
+  Rectangle {
     id: browserHeaderBottomGradient
     height:         3
     anchors.left:   parent.left
@@ -228,7 +228,7 @@ Rectangle {
 
   //------------------------------------------------------------------------------------------------------------------
 
-  state: "show"  
+  state: "show"
   states: [
   State {
     name: "show"
@@ -241,11 +241,11 @@ Rectangle {
     ]
 
 
-    //--------------------------------------------------------------------------------------------------------------------  
+    //--------------------------------------------------------------------------------------------------------------------
     // Necessary Functions
-    //--------------------------------------------------------------------------------------------------------------------  
+    //--------------------------------------------------------------------------------------------------------------------
 
-    function getSortingIdWithDelta( delta ) 
+    function getSortingIdWithDelta( delta )
     {
       var curPos = getPosForSortId( qmlBrowser.sortingId );
       var pos    = curPos + delta;

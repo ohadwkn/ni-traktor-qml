@@ -10,6 +10,10 @@ CenterOverlay {
   id: keylock
 
   property int  deckId:    0
+  readonly property variant keyText:       {"1d": "8B", "8d": "3B", "3d": "10B", "10d": "5B", "5d": "12B", "12d": "7B",
+                                            "7d": "2B", "2d": "9B", "9d": "4B", "4d": "11B", "11d": "6B", "6d": "1B",
+                                            "10m": "5A", "5m": "12A", "12m": "7A", "7m": "2A", "2m": "9A", "9m": "4A",
+                                            "4m": "11A", "11m": "6A", "6m": "1A", "1m": "8A", "8m": "3A", "3m": "10A"}
 
   Definitions.Margins {id: customMargins }
 
@@ -50,7 +54,7 @@ CenterOverlay {
       anchors.centerIn: parent
       anchors.verticalCenterOffset: 1
       anchors.horizontalCenterOffset: -1
-      font.pixelSize: fonts.smallFontSize     
+      font.pixelSize: fonts.smallFontSize
       text: "LOCK"
       color: (keyEnable.value) ? colors.colorBlack : colors.colorGrey104
     }
@@ -63,7 +67,7 @@ CenterOverlay {
     anchors.topMargin:        55
     font.pixelSize:           fonts.extraLargeValueFontSize
     font.family   :           "Pragmatica"
-    color:                    colors.colorWhite    
+    color:                    colors.colorWhite
   	text:  ((key<0)?"":"+") + key.toFixed(2).toString()
   }
 
@@ -80,7 +84,7 @@ CenterOverlay {
     opacity: (keyDisplay.value=="") ? 0 : 1
     text:    "(" + keyDisplay.value + ((offset==0)?"":" ") + ")"
   }
-  
+
   // footline
   Text {
     anchors.bottom:           parent.bottom
@@ -90,5 +94,5 @@ CenterOverlay {
     color:                    colors.colorGrey104
     text:                     "Hold BACK to reset"
   }
-  
+
 }

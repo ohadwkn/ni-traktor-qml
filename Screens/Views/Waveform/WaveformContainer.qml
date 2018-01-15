@@ -28,7 +28,7 @@ Item {
   AppProperty     { id: sampleRate;        path: "app.traktor.decks."   + (deckId + 1) + ".track.content.sample_rate"; onValueChanged: { updateLooping(); } }
   AppProperty     { id: propFluxState;     path: "app.traktor.decks."   + (deckId + 1) + ".flux.state"                 }
   AppProperty     { id: propFluxPosition;  path: "app.traktor.decks."   + (deckId + 1) + ".track.player.flux_position" }
-  
+
   // If the playhead is in a loop, propIsLooping is TRUE and the loop becomes the active cue.
   AppProperty   { id: propIsLooping;     path: "app.traktor.decks." + (deckId + 1) + ".loop.is_in_active_loop";        onValueChanged: { updateLooping(); } }
   AppProperty   { id: propLoopStart;     path: "app.traktor.decks." + (deckId + 1) + ".track.cue.active.start_pos";    onValueChanged: { updateLooping(); } }
@@ -38,7 +38,7 @@ Item {
   //--------------------------------------------------------------------------------------------------------------------
   // WAVEFORM Position
   //------------------------------------------------------------------------------------------------------------------
-  
+
   function slicer_zoom_width()          { return  slicer.slice_width * slicer.slice_count / slicer.zoom_factor * sampleRate.value;          }
   function slicer_pos_to_waveform_pos() { return (slicer.slice_start - (0.5 * slicer.slice_width * slicer.zoom_factor)) * sampleRate.value; }
 
@@ -57,7 +57,7 @@ Item {
     deckId: view.deckId
     followsPlayhead: !slicer.enabled && !beatgrid.editEnabled
     waveformPos:     beatgrid.editEnabled ? beatgrid.posOnEdit   : (slicer.enabled ? slicer_pos_to_waveform_pos() : (playheadPos -  0.5 * view.sampleWidth ))
-    sampleWidth:     beatgrid.editEnabled ? beatgrid.widthOnEdit : (slicer.enabled ? slicer_zoom_width()          : view.sampleWidth)
+    sampleWidth:     beatgrid.editEnabled ? beatgrid.widthOnEdit : (slicer.enabled ? slicer_zoom_width()          : view.sampleWidth / 0.75)
     viewWidth:       singleWaveform.width
 
     Behavior on sampleWidth { PropertyAnimation { duration: 150; easing.type: Easing.OutCubic } }
@@ -97,7 +97,7 @@ Item {
     id: stemWaveform
     deckId:        view.deckId
     sampleWidth:   view.sampleWidth
-   
+
     waveformPosition: wfPosition
 
     anchors.top:    singleWaveform.bottom
@@ -107,7 +107,7 @@ Item {
     anchors.leftMargin:   3
     anchors.rightMargin:  3
     anchors.bottomMargin: (isStemDeck & slicer.enabled) ? 15 : 0
-    
+
     visible: false // set by viewSizeState
   }
 
@@ -124,7 +124,7 @@ Item {
     waveformPosition: wfPosition
     propertiesPath:   view.propertiesPath
     trackId:          primaryKey.value
-    deckId:           parent.deckId  
+    deckId:           parent.deckId
     visible:          (!slicer.enabled || beatgrid.editEnabled)
     editEnabled:      view.isInEditMode && (deckSizeState != "small")
     clip: true
@@ -192,7 +192,7 @@ Item {
 
     Rectangle {
       property int sliceModeHeight: (stemStyle == StemStyle.track) ? waveformContainer.height - 14 : waveformContainer.height - 10
-      
+
       y:     -1
       width:  3
       height: (slicer.enabled && !beatgrid.editEnabled ) ? sliceModeHeight : waveformContainer.height + 2
@@ -228,7 +228,7 @@ Item {
 
   //--------------------------------------------------------------------------------------------------------------------
   // States
-  //------------------------------------------------------------------------------------------------------------------ 
+  //------------------------------------------------------------------------------------------------------------------
   state: isStemDeck ? "stem" : "single"
   states: [
     State {

@@ -11,7 +11,7 @@ Item {
   property string deckSizeState:   "large"
   property color  deckColor:       colors.colorBgEmpty // transparent blue not possible for logo due to low bit depth of displays. was: // (deckId < 2) ? colors.colorDeckBlueBright12Full : colors.colorBgEmpty
   property bool   trackIsLoaded:   (primaryKey.value > 0)
-  
+
   readonly property int waveformHeight: (deckSizeState == "small") ? 0 : ( parent ? ( (deckSizeState == "medium") ? (parent.height-43) : (parent.height-53) ) : 0 )
 
   property bool showLoopSize: false
@@ -48,15 +48,15 @@ Item {
     isInEditMode:         trackDeck.isInEditMode
     stemStyle:            trackDeck.stemStyle
 
-    anchors.topMargin:    -2 
+    anchors.topMargin:    -2
 
     // the height of the waveform is defined as the remaining space of deckHeight - stripe.height - spacerWaveStripe.height
-    height:  waveformHeight              
+    height:  waveformHeight
     visible: (trackIsLoaded && deckSizeState != "small") ? 1 : 0
 
     Behavior on height { PropertyAnimation { duration: durations.deckTransition } }
   }
-  
+
 
   //--------------------------------------------------------------------------------------------------------------------
   // Stripe
@@ -88,7 +88,7 @@ Item {
     id: stripe
 
     readonly property int largeDeckBottomMargin: (waveformContainer.isStemStyleDeck) ? 6 : 12
-    
+
     readonly property int smallDeckBottomMargin: (deckId > 1) ? 9 : 6
 
     anchors.left:           trackDeck.left
@@ -142,7 +142,7 @@ Item {
 
 */
   Rectangle {
-    id: soularGapFillerLeft
+    id: tensunsGapFillerLeft
     anchors.left:   deck_header.left
     anchors.right:  deck_header.right
     anchors.bottom: emptyTrackDeckImageColorOverlay.top
@@ -152,8 +152,8 @@ Item {
     visible:        (!trackIsLoaded && deckSizeState != "small")
 
     Text {
-      id:           soular_text
-      text:           "soular"
+      id:           tensunsText
+      text:           "TenSuns"
       color:            colors.rgba (255,140,0,255)
       font.pixelSize:       fonts.scale(35)
       anchors.left:       parent.left

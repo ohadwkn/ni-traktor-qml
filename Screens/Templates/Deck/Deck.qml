@@ -82,7 +82,7 @@ Item {
     Component { id: emptyDeckComponent; DeckTypes.EmptyDeck { id: emptyDeck; deckSizeState: view.deckSize } }
 
     Component { id: trackDeckComponent; DeckTypes.TrackDeck { id: trackDeck; deckId: view.deckId; deckSizeState: view.deckSize; zoomLevel: view.zoomLevel; showLoopSize: view.showLoopSize; isInEditMode: view.isInEditMode; stemStyle: view.stemStyle; propertiesPath: view.propertiesPath } }
-    
+
     Component { id: stemDeckComponent;  DeckTypes.TrackDeck  { id: stemDeck; deckId: view.deckId; deckSizeState: view.deckSize; zoomLevel: view.zoomLevel; showLoopSize: view.showLoopSize; isInEditMode: view.isInEditMode; stemStyle: view.stemStyle; propertiesPath: view.propertiesPath } }
 
     Component {

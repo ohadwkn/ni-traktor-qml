@@ -15,16 +15,16 @@ CenterOverlay {
 
   readonly property bool isSyncedToOtherDeck: (masterDeckId.value != deckId) && isSynced.value
   readonly property bool isSyncedToMasterClock: (masterDeckId.value == -1) && isSynced.value
-  
+
   //--------------------------------------------------------------------------------------------------------------------
 
   AppProperty { id: isSynced;   path: "app.traktor.decks." + (deckId+1) + ".sync.enabled" }
   AppProperty { id: stableBpm;  path: "app.traktor.decks." + (deckId+1) + ".tempo.true_bpm" }
   AppProperty { id: baseBpm;    path: "app.traktor.decks." + (deckId+1) + ".tempo.base_bpm" }
-  
+
   AppProperty { id: masterDeckId;   path: "app.traktor.masterclock.source_id" }
   AppProperty { id: masterClockBpm; path: "app.traktor.masterclock.tempo" }
-  
+
   //--------------------------------------------------------------------------------------------------------------------
 
   function titleForBPMOverlay(masterId, synced)
@@ -81,10 +81,10 @@ CenterOverlay {
     anchors.topMargin:        47
     font.pixelSize:           fonts.superLargeValueFontSize
     font.family   :           "Pragmatica"
-    color:                    colors.colorWhite    
+    color:                    colors.colorWhite
     text:                     dispBpm.toFixed(2).toString()
   }
-  
+
   // footline
   Text {
     anchors.bottom:           parent.bottom

@@ -13,9 +13,9 @@ QtObject {
     readonly property int sorting:            6
     readonly property int capture:            7
     readonly property int browserWarnings:    8
-
+/* #ifdef ENABLE_STEP_SEQUENCER */
     readonly property int swing:              9
-
+/* #endif */
 
 
     readonly property variant states:       [ "none"
@@ -27,9 +27,9 @@ QtObject {
                                             , "sorting"
                                             , "capture"
                                             , "browserWarnings"
-
+/* #ifdef ENABLE_STEP_SEQUENCER */
                                             , "swing"
-
+/* #endif */
                                             ]
 }
 

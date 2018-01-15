@@ -51,7 +51,7 @@ Rectangle {
 
   function getColumnIndex(state, columnIdx)
   {
-    
+    /* #ifdef ENABLE_STEP_SEQUENCER */
     if (state == "SLOT 1")
       return 0;
     if (state == "SLOT 2")
@@ -60,14 +60,14 @@ Rectangle {
       return 2;
     if (state == "SLOT 4")
       return 3;
-    
+    /* #endif */
 
     return columnIdx;
   }
 
   function getColumnState(state, columnIdx)
   {
-    
+    /* #ifdef ENABLE_STEP_SEQUENCER */
     if (state == "SLOT 1" || state == "SLOT 2" || state == "SLOT 3" || state == "SLOT 4")
     {
       switch (columnIdx)
@@ -82,7 +82,7 @@ Rectangle {
           return "FX SEND";
       }
     }
-    
+    /* #endif */
 
     return state;
   }
@@ -114,10 +114,10 @@ Rectangle {
         bgColor:        (index==0 && contentState == "FX" && sizeState == "large") ? colors.colorFxHeaderLightBg : bottomInfoPanel.color
 
         sliderHeight:   bottomPanelRow.sliderHeight
-        
+        /* #ifdef ENABLE_STEP_SEQUENCER */
         showSampleName: !(bottomInfoPanel.contentState == "SLOT 1" || bottomInfoPanel.contentState == "SLOT 2" ||
                           bottomInfoPanel.contentState == "SLOT 3" || bottomInfoPanel.contentState == "SLOT 4")
-        
+        /* #endif */
         state:          getColumnState(bottomInfoPanel.contentState, index)
         
         // If in stem deck on an S5, check if the current stem is selected (usually via the pads)

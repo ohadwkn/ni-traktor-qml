@@ -19,7 +19,7 @@ QtObject {
   property variant colorBlack66:                rgba (0, 0, 0, 168)
   property variant colorBlack63:                rgba (0, 0, 0, 161)
   property variant colorBlack60:                rgba (0, 0, 0, 153) // from 59 - 61%
-  property variant colorBlack56:                rgba (0, 0, 0, 143) // 
+  property variant colorBlack56:                rgba (0, 0, 0, 143) //
   property variant colorBlack53:                rgba (0, 0, 0, 135) // from 49 - 51%
   property variant colorBlack50:                rgba (0, 0, 0, 128) // from 49 - 51%
   property variant colorBlack47:                rgba (0, 0, 0, 120) // from 46 - 48%
@@ -27,7 +27,7 @@ QtObject {
   property variant colorBlack41:                rgba (0, 0, 0, 105) // from 40 - 42%
   property variant colorBlack38:                rgba (0, 0, 0, 97) // from 37 - 39%
   property variant colorBlack35:                rgba (0, 0, 0, 89) // from 33 - 36%
-  property variant colorBlack31:                rgba (0, 0, 0, 79) // from 30 - 32%  
+  property variant colorBlack31:                rgba (0, 0, 0, 79) // from 30 - 32%
   property variant colorBlack28:                rgba (0, 0, 0, 71) // from 27 - 29%
   property variant colorBlack25:                rgba (0, 0, 0, 64) // from 24 - 26%
   property variant colorBlack22:                rgba (0, 0, 0, 56) // from 21 - 23%
@@ -38,7 +38,7 @@ QtObject {
   property variant colorBlack0:                 rgba (0, 0, 0, 0)
 
   property variant colorWhite:                  rgba (255, 255, 255, 255)
-  property variant colorWhite75:                rgba (255, 255, 255, 191) 
+  property variant colorWhite75:                rgba (255, 255, 255, 191)
   property variant colorWhite85:                rgba (255, 255, 255, 217)
 
   // property variant colorWhite60:                rgba (255, 255, 255, 153) // from 59 - 61%
@@ -48,7 +48,7 @@ QtObject {
   property variant colorWhite41:                rgba (255, 255, 255, 105) // from 40 - 42%
   // property variant colorWhite38:                rgba (255, 255, 255, 97) // from 37 - 39%
   property variant colorWhite35:                rgba (255, 255, 255, 89) // from 33 - 36%
-  // property variant colorWhite31:                rgba (255, 255, 255, 79) // from 30 - 32%  
+  // property variant colorWhite31:                rgba (255, 255, 255, 79) // from 30 - 32%
   property variant colorWhite28:                rgba (255, 255, 255, 71) // from 27 - 29%
   property variant colorWhite25:                rgba (255, 255, 255, 64) // from 24 - 26%
   property variant colorWhite22:                rgba (255, 255, 255, 56) // from 21 - 23%
@@ -70,12 +70,12 @@ QtObject {
   property variant colorGrey112:                rgba (112, 112, 112, 255)
   property variant colorGrey104:                rgba (104, 104, 104, 255)
   property variant colorGrey96:                 rgba (96, 96, 96, 255)
-  property variant colorGrey88:                 rgba (88, 88, 88, 255) 
-  property variant colorGrey80:                 rgba (80, 80, 80, 255) 
-  property variant colorGrey72:                 rgba (72, 72, 72, 255) 
-  property variant colorGrey64:                 rgba (64, 64, 64, 255) 
-  property variant colorGrey56:                 rgba (56, 56, 56, 255) 
-  property variant colorGrey48:                 rgba (48, 48, 48, 255) 
+  property variant colorGrey88:                 rgba (88, 88, 88, 255)
+  property variant colorGrey80:                 rgba (80, 80, 80, 255)
+  property variant colorGrey72:                 rgba (72, 72, 72, 255)
+  property variant colorGrey64:                 rgba (64, 64, 64, 255)
+  property variant colorGrey56:                 rgba (56, 56, 56, 255)
+  property variant colorGrey48:                 rgba (48, 48, 48, 255)
   property variant colorGrey40:                 rgba (40, 40, 40, 255)
   property variant colorGrey32:                 rgba (32, 32, 32, 255)
   property variant colorGrey24:                 rgba (24, 24, 24, 255)
@@ -85,7 +85,7 @@ QtObject {
 
 
   property variant colorOrange:                 rgba(208, 104, 0, 255) // FX Selection; FX Faders etc
-  property variant colorOrangeDimmed:           rgba(96, 48, 0, 255)  
+  property variant colorOrangeDimmed:           rgba(96, 48, 0, 255)
 
   property variant colorRed:                    rgba(255, 0, 0, 255)
   property variant colorRed70:                  rgba(185, 6, 6, 255)
@@ -109,7 +109,7 @@ QtObject {
 
   property variant colorGreenGreyMix:           rgba(139, 240, 139, 82)
 
-  // font colors 
+  // font colors
   property variant colorFontsListBrowser:       colorGrey72
   property variant colorFontsListFx:            colorGrey56
   property variant colorFontBrowserHeader:      colorGrey88
@@ -118,12 +118,12 @@ QtObject {
   // headers & footers backgrounds
   property variant colorBgEmpty:                colorGrey16 // also for empty decks & Footer Small (used to be colorGrey08)
   property variant colorBrowserHeader:          colorGrey24
-  property variant colorFxHeaderBg:             colorGrey16 // also for large footer; fx overlay tabs         
+  property variant colorFxHeaderBg:             colorGrey16 // also for large footer; fx overlay tabs
   property variant colorFxHeaderLightBg:        colorGrey24
 
 
-  property variant colorProgressBg:             colorGrey32 
-  property variant colorProgressBgLight:        colorGrey48 
+  property variant colorProgressBg:             colorGrey32
+  property variant colorProgressBgLight:        colorGrey48
   property variant colorDivider:                colorGrey40
 
   property variant colorIndicatorBg:            rgba(20, 20, 20, 255)
@@ -135,8 +135,8 @@ QtObject {
   property variant colorCenterOverlayHeadline:  colorGrey88
 
 // blue
-  property variant colorDeckBlueBright:         rgba(0, 136, 184, 255) 
-  property variant colorDeckBlueDark:           rgba(0, 64, 88, 255) 
+  property variant colorDeckBlueBright:         rgba(0, 136, 184, 255)
+  property variant colorDeckBlueDark:           rgba(0, 64, 88, 255)
   property variant colorDeckBlueBright20:       rgba(0, 174, 239, 51)
   property variant colorDeckBlueBright50Full:   rgba(0, 87, 120, 255)
   property variant colorDeckBlueBright12Full:   rgba(0, 8, 10, 255) //rgba(0, 23, 31, 255)
@@ -169,7 +169,7 @@ QtObject {
   // palette1-color13:                   rgb(162,  0,200);
   // palette1-color14:                   rgb(245,  0,200);
   // palette1-color15:                   rgb(255,  0,120);
-  // palette1-color16:                   rgb(247,  7, 62); 
+  // palette1-color16:                   rgb(247,  7, 62);
 
 
   // 16 Colors Palette (Bright)
@@ -301,7 +301,7 @@ QtObject {
         return colorBgEmpty;
     }
     return colorBgEmpty;  // default color if no palette is set
-  } 
+  }
 
   //--------------------------------------------------------------------------------------------------------------------
 
@@ -312,7 +312,7 @@ QtObject {
   property variant browser:
   QtObject {
     property color prelisten:   rgba(223, 178, 30, 255)
-    property color prevPlayed:  rgba(32, 32, 32, 255) 
+    property color prevPlayed:  rgba(32, 32, 32, 255)
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -392,7 +392,7 @@ QtObject {
     color02MusicalKey,    //10  -7  a#, bb
     color08MusicalKey,    //11  -1  b
     color03Bright,        //12  -6  cm
-    color09MusicalKey,    //13  -16 c#m, dbm 
+    color09MusicalKey,    //13  -16 c#m, dbm
     color01Bright,        //14  -9  dm
     color07MusicalKey,    //15  -2  d#m, ebm
     color13Bright,        //16  -12 em
@@ -480,10 +480,14 @@ QtObject {
     { low1:  rgba (255,   0,  50, 150),  low2:  rgba (255,  30,  60, 170),
       mid1:  rgba (255, 110, 110, 130),  mid2:  rgba (255, 125, 125, 160),
       high1: rgba (255, 210, 220, 140),  high2: rgba (255, 220, 230, 160) },
-    // Spectrum-like colors
+    // Spectrum-like colors TenSuns
     { low1:  rgba (255,  50,   0, 150),  low2:  rgba (255,  70,  20, 170),
       mid1:  rgba ( 80, 245,  80, 110),  mid2:  rgba ( 95, 245,  95, 130),
-      high1: rgba ( 30,  85, 170, 255),  high2: rgba ( 50, 100, 180, 255)}
+      high1: rgba ( 30,  85, 170, 255),  high2: rgba ( 50, 100, 180, 255)},
+    // Spectrum
+    { low1:  rgba ( 41, 113, 246, 100),  low2:  rgba ( 41, 113, 246, 250),
+      mid1:  rgba ( 98, 234,  82, 100),  mid2:  rgba ( 98, 234,  82, 250),
+      high1: rgba (255, 255, 255, 100),  high2: rgba (255, 255, 255, 250) }
   ]
 
   function getDefaultWaveformColors()
